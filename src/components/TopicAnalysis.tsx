@@ -71,17 +71,6 @@ const TopicAnalysis: React.FC<TopicAnalysisProps> = ({ analysis }) => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4">
-          <div className="flex items-center justify-between">
-            <div>
-              <p className="text-green-100 text-sm">Trending Up</p>
-              <p className="text-lg font-bold">
-                {analysis.filter(item => item.recentTrend === 'up').length}
-              </p>
-            </div>
-            <TrendingUp className="w-6 h-6 text-green-200" />
-          </div>
-        </div>
 
         <div className="bg-gradient-to-r from-orange-500 to-orange-600 text-white rounded-lg p-4">
           <div className="flex items-center justify-between">
@@ -95,7 +84,7 @@ const TopicAnalysis: React.FC<TopicAnalysisProps> = ({ analysis }) => {
           </div>
         </div>
 
-        <div className="bg-gradient-to-r from-purple-500 to-purple-600 text-white rounded-lg p-4">
+        <div className="bg-gradient-to-r from-green-500 to-green-600 text-white rounded-lg p-4">
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-sm">Avg per Topic</p>
