@@ -28,6 +28,18 @@ const CompanyInsights: React.FC<CompanyInsightsProps> = ({ insights }) => {
     ];
     return colors[index % colors.length];
   };
+  const colorMap: Record<string, string> = {
+    'bg-red-500': '#DC143C',
+  'bg-blue-500': '#3B82F6',
+  'bg-green-500': '#10B981',
+  'bg-purple-500': '#8B5CF6',
+  'bg-orange-500': '#F97316',
+  'bg-indigo-500': '#6366F1',
+  'bg-pink-500': '#EC4899',
+  'bg-teal-500': '#14B8A6',
+  'bg-yellow-500': '#F59E0B',
+  'bg-gray-500': '#6B7280',
+};
 
   const getDifficultyColor = (difficulty: string) => {
     switch (difficulty) {
@@ -73,7 +85,7 @@ const CompanyInsights: React.FC<CompanyInsightsProps> = ({ insights }) => {
               <path
                 key={key}
                 d={pathData}
-                fill={`currentColor`}
+                fill={colorMap[getColor(key, index)] || '#000000'}
                 className={`${getColor(key, index).replace('bg-', 'text-')} opacity-80 hover:opacity-100 transition-opacity`}
               />
             );
