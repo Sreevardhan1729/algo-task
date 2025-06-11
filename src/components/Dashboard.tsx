@@ -72,6 +72,9 @@ const Dashboard: React.FC = () => {
   };
 
   const handleExport = (format: 'csv' | 'json') => {
+    if (format==='json'){
+      return
+    }
     const dataStr = format === 'csv' 
       ? convertToCSV(questions)
       : JSON.stringify(questions, null, 2);
@@ -205,13 +208,6 @@ const Dashboard: React.FC = () => {
                 >
                   <Download className="w-4 h-4 mr-2" />
                   CSV
-                </button>
-                <button
-                  onClick={() => handleExport('json')}
-                  className="px-3 py-2 text-sm text-gray-600 hover:text-gray-900 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors flex items-center"
-                >
-                  <FileText className="w-4 h-4 mr-2" />
-                  JSON
                 </button>
               </div>
               <button className="p-2 text-gray-600 hover:text-gray-900 transition-colors">
