@@ -26,7 +26,9 @@ export const extractQuestionData = (questionId: string, data: any): Question => 
   text = (temp.length)<(text.length) ? temp : text
   text = text.substring(13)
   text = "##  Problem statement" + text
-  text =text.replace(/\[.*?\]/g, '[]');
+  text =text.replace(/\[.*?\]/g);
+  const urlPattern = /https?:\/\/[^\s]+/g;
+  text= text.replace(urlPattern, '');
   return {
     id: questionId,
     title,
@@ -59,9 +61,6 @@ const extractDifficulty = (
   return match ? (match[1] as 'Easy' | 'Moderate' | 'Medium' | 'Hard') : undefined;
 };
 
-const extractTopics = (item: { topic?: string[] }): string[] => {
-  return item.topic?.length ? item.topic : ['General'];
-};
 
 const extractRoundType = (text: string): 'OA' | 'Technical' | 'HR' | 'Onsite' | undefined => {
   const roundMatch = text.match(/\b(OA|Online Assessment|Technical|HR|Onsite|Phone Screen)\b/i);
@@ -104,7 +103,7 @@ const extractSampleIO = (text: string): { sampleInput?: string; sampleOutput?: s
     explanation1 = grabBetween(
       text,
       "##### Explanation",
-      "Sample Input 2"
+      "##### Sample Input 2"
     );
   }
   let explanation2 = "";
@@ -112,7 +111,7 @@ const extractSampleIO = (text: string): { sampleInput?: string; sampleOutput?: s
     explanation2 = grabBetween(
       text,
       "##### Explanation",
-      "[Full screen"
+      "C++ (g++ 5.4)"
     );
   }
   let explanation =""
