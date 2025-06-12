@@ -20,7 +20,10 @@ export const extractQuestionData = (questionId: string, data: any): Question => 
   
   // Extract description (first 2 sentences)
   const description = extractDescription(text).substring(13);
+  let temp = text;
   text = grabBetween(text,"##  Problem statement","##### Sample Input")
+  temp = grabBetween(temp,"##  Problem statement","C++ (g++ 5.4)")
+  text = (temp.length)<(text.length) ? temp : text
   text = text.substring(13)
   text = "##  Problem statement" + text
   text =text.replace(/\[.*?\]/g, '[]');
