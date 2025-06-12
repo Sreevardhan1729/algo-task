@@ -16,7 +16,7 @@ export const extractQuestionData = (questionId: string, data: any): Question => 
   const roundType = extractRoundType(text);
   
   // Extract sample input/output
-  const { sampleInput, sampleOutput, explanation } = extractSampleIO(text);
+  let { sampleInput, sampleOutput, explanation } = extractSampleIO(text);
   
   // Extract description (first 2 sentences)
   const description = extractDescription(text).substring(13);
@@ -26,9 +26,11 @@ export const extractQuestionData = (questionId: string, data: any): Question => 
   text = (temp.length)<(text.length) ? temp : text
   text = text.substring(13)
   text = "##  Problem statement" + text
-  text =text.replace(/\[.*?\]/g);
+  text =text.replace(/\[.*?\]/g,'');
   const urlPattern = /https?:\/\/[^\s]+/g;
   text= text.replace(urlPattern, '');
+  if(explanation) explanation =explanation.replace(/\[.*?\]/g,'');
+  if(explanation) explanation= explanation.replace(urlPattern, '');
   return {
     id: questionId,
     title,
